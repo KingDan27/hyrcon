@@ -1,6 +1,3 @@
-This is a fork of the original project. due to it not being maintained for 9months at this point i will be maintaining this version everything below this line is the original authors words.
-
-
 # HyRCON Mod
 
 This mod runs a TCP server that listens for commands from external HyRCON/Source RCON clients to run in the server console, allowing easier commands in headless containerized deployments.
