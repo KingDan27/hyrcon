@@ -1,4 +1,4 @@
-package to.dstn.hytale.hyrcon;
+package ca.ardentgaming.hyrcon;
 
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
-public final class HyRCON extends JavaPlugin {
+public final class HyRconPlugin extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
@@ -28,7 +28,7 @@ public final class HyRCON extends JavaPlugin {
     private Thread shutdownHook;
     private boolean shutdownHookRegistered;
 
-    public HyRCON(@NotNull JavaPluginInit init) {
+    public HyRconPlugin(@NotNull JavaPluginInit init) {
         super(init);
         LOGGER.atInfo().log("HyRCON plugin initialized");
     }

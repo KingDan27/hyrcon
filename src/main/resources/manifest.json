@@ -1,18 +1,22 @@
 {
-  "Group": "${plugin_group}",
-  "Name": "${plugin_name}",
-  "Version": "${plugin_version}",
-  "Description": "${plugin_description}",
+  "Group": "dan",
+  "Name": "HyRCON",
+  "Version": "1.0.0",
+  "Description": "RCON server for running console commands remotely (HyRCON and Source RCON protocols)",
   "Authors": [
     {
-      "Name": "${plugin_author}"
+      "Name": "Daniel L.",
+      "Email": "ardentgaminghelp@gmail.com",
+      "Url": ""
     }
   ],
-  "Website": "${plugin_website}",
-  "ServerVersion": "${server_version}",
+  "Website": "https://discord.ardentgaming.ca",
+  "ServerVersion": "*",
   "Dependencies": {},
   "OptionalDependencies": {},
+  "LoadBefore": {},
   "DisabledByDefault": false,
   "IncludesAssetPack": true,
-  "Main": "${plugin_main_entrypoint}"
+  "Main": "ca.ardentgaming.hyrcon.HyRconPlugin",
+  "SubPlugins": []
 }

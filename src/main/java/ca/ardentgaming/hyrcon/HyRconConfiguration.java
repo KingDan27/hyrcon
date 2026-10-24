@@ -1,4 +1,4 @@
-package to.dstn.hytale.hyrcon;
+package ca.ardentgaming.hyrcon;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

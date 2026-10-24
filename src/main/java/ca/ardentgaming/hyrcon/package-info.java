@@ -1,4 +1,4 @@
 @NullMarked
-package to.dstn.hytale.hyrcon;
+package ca.ardentgaming.hyrcon;
 
 import org.jspecify.annotations.NullMarked;

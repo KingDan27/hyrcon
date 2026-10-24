@@ -1,95 +1,36 @@
 plugins {
-    `maven-publish`
-    id("hytale-mod") version "0.+"
+    java
 }
 
-group = "to.dstn.hytale"
-val envTagVersion = listOf("CI_COMMIT_TAG", "GITHUB_REF_NAME", "GIT_TAG", "TAG_NAME")
-    .asSequence()
-    .mapNotNull { System.getenv(it)?.takeIf(String::isNotBlank) }
-    .map { it.removePrefix("refs/tags/") }
-    .map { it.removePrefix("v") }
-    .firstOrNull()
-val envVersion = System.getenv("HYRCON_VERSION")
-    ?.takeIf(String::isNotBlank)
-    ?.removePrefix("v")
-version = envVersion ?: envTagVersion ?: "1.0.0"
-val javaVersion = 25
+group = "ca.ardentgaming"
+val manifestVersion = Regex("\"Version\"\\s*:\\s*\"([^\"]+)\"")
+    .find(file("src/main/resources/manifest.json").readText(Charsets.UTF_8))
+    ?.groupValues
+    ?.get(1)
+    ?: "0.0.0"
+version = manifestVersion
 
 repositories {
     mavenCentral()
-    maven("https://maven.hytale-modding.info/releases") {
-        name = "HytaleModdingReleases"
-    }
+    maven("https://maven.hytale.com/release")
 }
 
 dependencies {
-    compileOnly(libs.jetbrains.annotations)
-    compileOnly(libs.jspecify)
-
-    runtimeOnly(libs.bettermodlist)
+    compileOnly("com.hypixel.hytale:Server:+")
+    compileOnly("org.jetbrains:annotations:26.0.2-1")
+    compileOnly("org.jspecify:jspecify:1.0.0")
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(javaVersion)
-    }
-
-    withSourcesJar()
-}
-
-tasks.named<ProcessResources>("processResources") {
-    var replaceProperties = mapOf(
-        "plugin_group" to findProperty("plugin_group"),
-        "plugin_maven_group" to project.group,
-        "plugin_name" to project.name,
-        "plugin_version" to project.version,
-        "server_version" to findProperty("server_version"),
-
-        "plugin_description" to findProperty("plugin_description"),
-        "plugin_website" to findProperty("plugin_website"),
-
-        "plugin_main_entrypoint" to findProperty("plugin_main_entrypoint"),
-        "plugin_author" to findProperty("plugin_author")
-    )
-
-    filesMatching("manifest.json") {
-        expand(replaceProperties)
-    }
-
-    inputs.properties(replaceProperties)
-}
-
-hytale {
-
-}
-
-tasks.withType<Jar> {
-    manifest {
-        attributes["Specification-Title"] = rootProject.name
-        attributes["Specification-Version"] = version
-        attributes["Implementation-Title"] = project.name
-        attributes["Implementation-Version"] =
-            providers.environmentVariable("COMMIT_SHA_SHORT")
-                .map { "${version}-${it}" }
-                .getOrElse(version.toString())
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
-publishing {
-    repositories {
-    }
-
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-        }
-    }
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
 }
 
-idea {
-    module {
-        isDownloadSources = true
-        isDownloadJavadoc = true
-    }
+tasks.jar {
+    archiveFileName.set("HyRCON-${project.version}.jar")
 }

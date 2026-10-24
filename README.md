@@ -2,8 +2,6 @@
 
 This mod runs a TCP server that listens for commands from external HyRCON/Source RCON clients to run in the server console, allowing easier commands in headless containerized deployments.
 
-[![Creator Code Support Banner](https://files.dstn.to/3e7b93579c732922.png)](https://store.hytale.com/)
-
 ## Configuration
 
 When you first add the mod to your server and start it, a new directory will get created containing a `config.yml.example` if you rename this file to `config.yml` or copy it to the new name, and change the options to fit your needs it will use the config file over environment variables.
@@ -19,8 +17,18 @@ This plugin can also read configuration elements directly from the process envir
 
 ## Connecting to the HyRCON Server
 
-I created a simple Rust client that can be used to connect to the HyRCON server, which you can download from [here](https://github.com/dustinrouillard/hyrcon-client/releases), but any tools that can connect to a Source-compatible RCON server should work, if you come across any issues please open an issue on the GitHub repository.
+Any tool that can connect to a Source-compatible RCON server will work (the default `source` protocol). Set `HYRCON_PROTOCOL=hyrcon` for the legacy line-based protocol. Report problems on the [issue tracker](https://github.com/KingDan27/hyrcon/issues).
 
-## Running your server in Docker
+## Building
 
-If you're looking for an easy way to run your server in Docker, I also created a container image that handles OAuth and automatic mod downloads which includes this mod for its in-built RCON capabilities, you can find that over at [dustinrouillard/hytale-docker](https://github.com/dustinrouillard/hytale-docker)
+Requires JDK 25. The plugin version comes from `src/main/resources/manifest.json`.
+
+```
+./gradlew build
+```
+
+The jar is written to `build/libs/HyRCON-<version>.jar`. Publishing a GitHub release builds and attaches the jar automatically.
+
+## Credits
+
+Originally created by [Dustin Rouillard](https://github.com/dustinrouillard/hyrcon) and now maintained by Daniel L. Licensed under MIT.

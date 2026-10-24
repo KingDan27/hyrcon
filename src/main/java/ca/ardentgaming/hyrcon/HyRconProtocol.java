@@ -1,4 +1,4 @@
-package to.dstn.hytale.hyrcon;
+package ca.ardentgaming.hyrcon;
 
 import java.util.Locale;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package to.dstn.hytale.hyrcon;
+package ca.ardentgaming.hyrcon;
 
 import com.hypixel.hytale.logger.HytaleLogger;
 import java.io.BufferedInputStream;
