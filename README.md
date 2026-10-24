@@ -1,3 +1,6 @@
+This is a fork of the original project. due to it not being maintained for 9months at this point i will be maintaining this version everything below this line is the original authors words.
+
+
 # HyRCON Mod
 
 This mod runs a TCP server that listens for commands from external HyRCON/Source RCON clients to run in the server console, allowing easier commands in headless containerized deployments.
@@ -20,7 +23,3 @@ This plugin can also read configuration elements directly from the process envir
 ## Connecting to the HyRCON Server
 
 I created a simple Rust client that can be used to connect to the HyRCON server, which you can download from [here](https://github.com/dustinrouillard/hyrcon-client/releases), but any tools that can connect to a Source-compatible RCON server should work, if you come across any issues please open an issue on the GitHub repository.
-
-## Running your server in Docker
-
-If you're looking for an easy way to run your server in Docker, I also created a container image that handles OAuth and automatic mod downloads which includes this mod for its in-built RCON capabilities, you can find that over at [dustinrouillard/hytale-docker](https://github.com/dustinrouillard/hytale-docker)
